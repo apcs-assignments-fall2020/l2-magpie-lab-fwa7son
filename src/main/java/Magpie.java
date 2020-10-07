@@ -42,6 +42,21 @@ public class Magpie
         {
             response = "Tell me more about your family.";
         }
+        else if (findWord(statement, "brother")>=0 || findWord(statement, "sister")>=0){
+            response = "I have a brother too. Tell me more about your family...";
+        }
+        else if (findWord(statement, "dog")>=0){
+            response = "I have a dog too, what type of dog do you have";
+        }
+        else if (findWord(statement, "grandmother")>=0 || findWord(statement, "grandfather")>=0){
+            response = "grandparents are great... I have a grandmother too";
+        }
+        else if (findWord(statement, "phone")>=0){
+            response = "What apps do you use?";
+        }
+        else if (findWord(statement, "class")>=0){
+            response  = "do you like school?";
+        }
         else
         {
             response = getRandomResponse();
@@ -76,6 +91,14 @@ public class Magpie
         {
             response = "You don't say.";
         }
+        else if (whichResponse == 4)
+        {
+            response = "Thats crazy!";
+        }
+        else if (whichResponse == 5)
+        {
+            response = "I have never thought of it like that...";
+        }
     
         return response;
     }
@@ -90,7 +113,10 @@ public class Magpie
     // The method returns the index of the first character in word
     // if it is found, and returns -1 otherwise. 
     public int findWord(String str, String word) {
-        return -1;
+        str = " " + str.toLowerCase() + " ";
+        word = " " + word.toLowerCase() + " ";
+        return str.indexOf(word);
+
     }
 
     
