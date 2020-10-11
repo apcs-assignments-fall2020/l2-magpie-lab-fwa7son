@@ -57,6 +57,19 @@ public class Magpie
         else if (findWord(statement, "class")>=0){
             response  = "do you like school?";
         }
+        else if (findWord(statement, "i want to")>=0){
+            response = transformIWantStatement(statement);
+        }
+        else if (findWord(statement, "i want")>=0){
+            response = transformIWantStatement(statement);
+        }
+        else if (findWord(statement, "i")>=0 && (findWord(statement, "you")>=0)){
+            response = transformIYouStatement(statement);
+        }
+        else if (findWord(statement, "you")>=0 && (findWord(statement, "me")>=0)){
+            response = transformYouMeStatement(statement);
+        }
+
         else
         {
             response = getRandomResponse();
@@ -130,8 +143,12 @@ public class Magpie
      */
     public String transformIWantStatement(String statement)
     {
-        //your code here
-        return "";
+        int fw = findWord(statement, "i want");
+        String word = "";
+        if(fw + 6 < statement.length()-1){
+            word = statement.substring(fw+6);
+        }
+        return "Would you really be happy if you had"+ word + "?";
     }
 
     /**
@@ -142,8 +159,8 @@ public class Magpie
      */
     public String transformIYouStatement(String statement)
     {
-        //your code here
-        return "";
+        String Tyou = statement.substring(findWord(statement, "i")+2, findWord(statement, "you")-1);
+        return "Why do you "+Tyou+" me?";
     }
 
     /**
@@ -154,10 +171,13 @@ public class Magpie
      */
     public String transformIWantToStatement(String statement)
     {
-        // your code here
-        return "";
+        int fw = findWord(statement, "i want to");
+        String Twant = "";
+        if(fw +9<statement.length()-1){
+            Twant = statement.substring(fw+9);
+        }
+        return "What would it mean to" + Twant + "?";
     }
-
 
 
 
@@ -169,7 +189,7 @@ public class Magpie
      */
     public String transformYouMeStatement(String statement)
     {
-        // your code here
-        return "";
+        String Tyoume = statement.substring(findWord(statement, "you") + 3, findWord(statement, "me") -1);
+        return "What makes you think that I" +Tyoume+" you?";
     }
 }
